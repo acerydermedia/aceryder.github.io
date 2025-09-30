@@ -1,77 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ace Ryder | Author</title>
+  <!-- ——— Meta / SEO ——— -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ace Ryder — Author of Survival Thrillers</title>
+  <meta name="description" content="Ace Ryder writes survival thrillers with a ruthless edge. New novel 'No One Left But Us' — coming soon." />
+  <meta name="theme-color" content="#0b0c10" />
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Ace Ryder — Author of Survival Thrillers" />
+  <meta property="og:description" content="New novel 'No One Left But Us' — coming soon. Join the newsletter to get chapter one early." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.aceyder.com/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop" />
+
+  <!-- Favicon (swap later) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='6' font-size='48'%3E🗡️%3C/text%3E%3C/svg%3E" />
+
+  <!-- ——— Fonts (system first for speed) ——— -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- ——— Styles ——— -->
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0e0e0e;
-      color: #fff;
-      text-align: center;
+    :root{
+      --bg:#0b0c10;          /* page background */
+      --card:#0f1117;        /* section cards */
+      --ink:#e7e9ee;         /* primary text */
+      --muted:#9aa3b2;       /* secondary text */
+      --brand:#7dd3fc;       /* accent (sky-300) */
+      --brand-2:#60a5fa;     /* accent 2 (blue-400) */
+      --ring:#1f6feb;        /* focus ring */
+      --max:1100px;
+      --radius:18px;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
     }
-    header {
-      background: url('https://source.unsplash.com/1600x900/?mountains,forest,dark') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-attachment: fixed;
+
+    * { box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol";
+      color:var(--ink);
+      background: radial-gradient(1200px 800px at 80% -10%, #122443 0%, transparent 60%),
+                  radial-gradient(1000px 600px at 10% 110%, #1a2639 0%, transparent 60%),
+                  var(--bg);
+      letter-spacing:.01em;
     }
-    h1 {
-      font-size: 4rem;
-      margin: 0;
-      text-shadow: 2px 2px 10px #000;
+
+    /* Layout */
+    .wrap{ width:min(100%, var(--max)); margin-inline:auto; padding-inline:24px }
+    section{ padding:72px 0 }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.06);
+      backdrop-filter:saturate(120%) blur(6px);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
     }
-    p.tagline {
-      font-size: 1.5rem;
-      margin-top: 10px;
-      color: #ccc;
+
+    /* Header / Hero */
+    header.hero{
+      position:relative;
+      min-height:84vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      overflow:hidden;
     }
-    .buttons {
-      margin-top: 20px;
+    .hero .glow{
+      position:absolute; inset:-30%;
+      background:
+        radial-gradient(600px 600px at 60% 40%, rgba(125,211,252,.20), transparent 60%),
+        radial-gradient(700px 700px at 40% 60%, rgba(96,165,250,.18), transparent 60%);
+      filter:saturate(140%) blur(40px);
+      animation:float 18s linear infinite alternate;
+      z-index:0;
     }
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      border: 2px solid #fff;
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 5px;
-      transition: 0.3s;
+    @keyframes float{
+      from{ transform:translateY(-2%) }
+      to{   transform:translateY(2%) }
     }
-    .buttons a:hover {
-      background: #fff;
-      color: #000;
+    .hero .content{ position:relative; z-index:1; padding:40px 28px }
+    .eyebrow{
+      display:inline-block; font-weight:600; color:var(--brand);
+      letter-spacing:.18em; text-transform:uppercase; font-size:.78rem; margin-bottom:14px
     }
-    footer {
-      padding: 20px;
-      background: #111;
-      font-size: 0.9rem;
-      color: #777;
+    h1.title{
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      line-height:1.05; margin:0 0 12px; font-weight:800;
+      text-shadow:0 2px 24px rgba(0,0,0,.55);
     }
+    p.sub{ color:var(--muted); margin:0 auto 24px; max-width:48ch; font-size: clamp(1rem, 1.4vw, 1.125rem) }
+
+    /* CTA buttons */
+    .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px }
+    .btn{
+      --bg-btn:transparent;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 16px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.18); color:var(--ink);
+      background:var(--bg-btn); text-decoration:none; font-weight:600;
+      transition:transform .12s ease, background .25s ease, border-color .25s ease;
+    }
+    .btn:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.35); background:rgba(255,255,255,.06) }
+    .btn:focus-visible{ outline:3px solid var(--ring); outline-offset:2px }
+    .btn.primary{
+      --bg-btn:linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+      color:#09111a; border-color:transparent;
+    }
+    .btn.primary:hover{ filter:brightness(1.05) }
+
+    .icon{ width:18px; height:18px; display:inline-block; vertical-align:-2px; }
+
+    /* About */
+    .grid{ display:grid; gap:28px; grid-template-columns: 1fr }
+    @media (min-width:900px){ .grid{ grid-template-columns: 1.2fr .8fr } }
+
+    .about{ margin-top:-40px }
+    .about .card{ padding:34px }
+    .about h2{ margin:0 0 10px; font-size: clamp(1.6rem, 2.2vw, 2rem) }
+    .about p{ color:var(--muted); line-height:1.7; margin:0 }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+      background:rgba(125,211,252,.12); border:1px solid rgba(125,211,252,.25); color:#cfeafe; font-weight:600; font-size:.85rem
+    }
+
+    /* Book teaser */
+    .book .card{ padding:34px; }
+    .book h3{ margin:0 0 8px; font-size: clamp(1.3rem, 2vw, 1.6rem) }
+    .quote{ font-style:italic; color:#cbd5e1; margin:10px 0 18px }
+    .muted{ color:var(--muted) }
+
+    /* Newsletter */
+    .newsletter .card{ padding:34px; text-align:center }
+    .newsletter h2{ margin:0 0 8px }
+    form.inline{
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px
+    }
+    input[type="email"]{
+      width:min(360px, 86vw);
+      padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.14);
+      background:#0c111a; color:var(--ink)
+    }
+    input[type="email"]::placeholder{ color:#7c8aa2 }
+    .small{ font-size:.9rem; color:var(--muted) }
+
+    /* Footer */
+    footer{ padding:48px 0 56px; color:#93a1b6; font-size:.92rem }
+    footer .row{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px }
+    a.link{ color:#bcd6ff; text-decoration:none }
+    a.link:hover{ text-decoration:underline }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ACE RYDER</h1>
-    <p class="tagline">Author of No One Left But Us. Available in 2026.</p>
-    <div class="buttons">
-      <a href="mailto:contact@aceyder.com">Email</a>
-      <a href="https://x.com/yourhandle" target="_blank">X</a>
-      <a href="https://youtube.com/@yourchannel" target="_blank">YouTube</a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+
+  <!-- ——— HERO ——— -->
+  <header class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="content wrap">
+      <span class="eyebrow">Ace Ryder</span>
+      <h1 class="title">Survival Thrillers. Cold Resolve. No Easy Choices.</h1>
+      <p class="sub">A new series that blends wilderness realism with relentless momentum. <strong>No One Left But Us</strong> — first look soon.</p>
+
+      <div class="cta-row" role="navigation" aria-label="Primary">
+        <a class="btn primary" href="mailto:you@aceyder.com" aria-label="Email Ace">
+          <!-- mail icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2 .32V8l7.27 4.36a2 2 0 0 0 2.06 0L21 8V6.82l-8.2 4.9a4 4 0 0 1-4.1 0L4 6.82Z"/></svg>
+          Email
+        </a>
+        <a class="btn" href="https://x.com/YOUR_X_URL" target="_blank" rel="noopener" aria-label="X (Twitter)">
+          <!-- X icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h4.7l4.2 5.4L16.9 3H21l-7.6 8.9L21 21h-4.7l-5-6.5L7.1 21H3l8-9.3L3 3z"/></svg>
+          X
+        </a>
+        <a class="btn" href="https://youtube.com/@YOUR_YT_HANDLE" target="_blank" rel="noopener" aria-label="YouTube">
+          <!-- YouTube icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.4-1.9.5-3.8.5-5.8s0-3.9-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6z"/></svg>
+          YouTube
+        </a>
+        <a class="btn" href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <!-- LinkedIn icon -->
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8 8h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.55c0-1.56-.03-3.57-2.18-3.57-2.18 0-2.51 1.7-2.51 3.45V23h-4V8z"/></svg>
+          LinkedIn
+        </a>
+      </div>
     </div>
   </header>
 
-  <footer>
-    © 2025 Ace Ryder. All rights reserved.
+  <!-- ——— ABOUT + BOOK ——— -->
+  <section class="wrap grid about" id="about" aria-label="About and Book">
+    <article class="card">
+      <div class="badge">Author • Survival • Discipline</div>
+      <h2>About Ace Ryder</h2>
+      <p>Ace Ryder writes lean, relentless thrillers about ordinary people forced into impossible terrain—moral and physical. Expect cold heads, scarce resources, and one rule: no one is coming to save you.</p>
+      <p class="muted" style="margin-top:12px">When Ace isn’t outlining, he’s training and stress-testing scenes in the real world. The mission: stories that feel like they could happen tomorrow.</p>
+    </article>
+
+    <aside class="card book">
+      <h3>Next Up: <em>No One Left But Us</em></h3>
+      <p class="quote">“Brutal, believable, and fast. I felt the cold in my bones.”</p>
+      <p class="muted">Target: 2026. Get chapter one early and launch updates when they drop.</p>
+      <div style="margin-top:12px">
+        <a class="btn primary" href="#newsletter">Get Chapter One</a>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ——— NEWSLETTER ——— -->
+  <section class="wrap newsletter" id="newsletter" aria-label="Newsletter">
+    <div class="card">
+      <h2>Get alerts, first looks, and field notes.</h2>
+      <p class="muted">No fluff. A few high-value emails a year. Unsubscribe anytime.</p>
+
+      <!-- 
+        Connect this form to your email provider:
+        - ConvertKit: Replace action with your form's action URL and the email input name with "email_address".
+        - Mailchimp: Use the embedded form URL and field names from their admin.
+        - Temporary/testing: use https://formspree.io/f/{id}
+      -->
+      <form class="inline" action="https://formspree.io/f/your-id" method="POST">
+        <label class="visually-hidden" for="email">Email address</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
+               placeholder="you@aceyder.com" required />
+        <button class="btn primary" type="submit">Join the List</button>
+      </form>
+
+      <p class="small" style="margin-top:10px">We’ll never share your email. By subscribing you agree to receive updates from Ace Ryder.</p>
+    </div>
+  </section>
+
+  <!-- ——— FOOTER ——— -->
+  <footer class="wrap" role="contentinfo">
+    <div style="text-align:center">
+      <div>© <span id="year"></span> Ace Ryder. All rights reserved.</div>
+      <div class="row">
+        <a class="link" href="mailto:you@aceyder.com">Contact</a>
+        <a class="link" href="#about">About</a>
+        <a class="link" href="#newsletter">Newsletter</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Accessibility helper -->
+  <style>
+    .visually-hidden{
+      position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); white-space:nowrap;
+    }
+  </style>
 </body>
 </html>
+
 
